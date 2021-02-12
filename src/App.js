@@ -11,6 +11,10 @@ function App() {
     <Router>
       <div className="App">
         <Nav />
+        <input type="text" id="cursorX" size="3" /> X-position of the mouse
+        cursor
+        <input type="text" id="cursorY" size="3" /> Y-position of the mouse
+        cursor
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />

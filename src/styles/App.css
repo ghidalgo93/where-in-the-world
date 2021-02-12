@@ -54,5 +54,15 @@ footer {
 }
 
 .img-pzl {
-  cursor: url(../images/crosshairs.png), auto;
+  cursor: crosshair;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  background-color: black;
+}
+
+.modal-content {
+  color: white;
 }
