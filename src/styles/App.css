@@ -54,5 +54,5 @@ footer {
 }
 
 .img-pzl {
-  width: 100%;
+  cursor: url(../images/crosshairs.png), auto;
 }
