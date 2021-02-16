@@ -2,15 +2,18 @@ import "../styles/App.css";
 import crosshairs from "../images/crosshairs.png";
 
 const TargetPopup = (props) => {
-  const style = {
-    top: props.coords[1],
-    left: props.coords[0],
+  const positionStyle = {
+    top: props.coords[1] - 40,
+    left: props.coords[0] - 40,
   };
 
   return (
-    <div style={style} className={"modal"}>
-      <img src={crosshairs} alt="crosshairs" />
-    </div>
+    <img
+      className={"modal target"}
+      style={positionStyle}
+      src={crosshairs}
+      alt="crosshairs"
+    />
   );
 };
 
