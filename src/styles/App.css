@@ -55,14 +55,10 @@ footer {
 
 .img-pzl {
   cursor: crosshair;
+  position: relative;
 }
 
 .modal {
-  position: fixed;
+  position: absolute;
   z-index: 1;
-  background-color: black;
-}
-
-.modal-content {
-  color: white;
 }
