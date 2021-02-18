@@ -39,7 +39,11 @@ const Home = () => {
     <div className={"img-container"}>
       {targetShown ? <TargetPopup coords={imgClickLocation} /> : null}
       {targetShown ? (
-        <NamesPopup coords={imgClickLocation} chars={chars} />
+        <NamesPopup
+          coords={imgClickLocation}
+          chars={chars}
+          setChars={setChars}
+        />
       ) : null}
       <img
         className={"img-pzl content"}

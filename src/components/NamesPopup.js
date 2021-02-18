@@ -14,11 +14,15 @@ const NamesPopup = (props) => {
     const char = e.target.textContent;
     if (coordsInRange(props.coords, props.chars[char].coords, 40)) {
       console.log("fuck yeah");
-      //
+      const newChars = props.chars;
+      delete newChars[char];
+      props.setChars(newChars);
     } else {
       console.log("saaaad");
     }
   };
+
+  useEffect(() => {}, [props.chars]);
 
   const charsArray = Object.values(props.chars);
   const listItems = charsArray.map((char) => (
@@ -26,7 +30,6 @@ const NamesPopup = (props) => {
       {char.name}
     </li>
   ));
-  // console.log(props.chars.mario.coords);
 
   return (
     <ul className={"modal names"} style={positionStyle}>
