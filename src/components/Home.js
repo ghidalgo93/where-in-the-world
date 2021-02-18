@@ -15,11 +15,13 @@ function getElementXY() {
 
 const getData = async () => {
   try {
-    const query = firebase.firestore().collection("chars");
-    const snapshot = await query.get();
-    return snapshot.docs.map((doc) => {
-      return doc.data();
-    });
+    const query = firebase.firestore().collection("chars").doc("easy");
+    // const snapshot = await query.get();
+    const doc = await query.get();
+    // return snapshot.docs.map((doc) => {
+    //   return doc.data();
+    // });
+    return doc.data();
   } catch (error) {
     console.log("Collection not found: ", error);
   }
@@ -48,7 +50,7 @@ const Home = () => {
       <div className={"img-container"}>
         {targetShown ? <TargetPopup coords={imgClickLocation} /> : null}
         {targetShown ? (
-          <NamesPopup coords={imgClickLocation} data={data} />
+          <NamesPopup coords={imgClickLocation} chars={data} />
         ) : null}
         <img
           className={"img-pzl content"}
