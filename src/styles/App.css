@@ -53,19 +53,21 @@ footer {
   margin-left: 5vh;
 }
 
+.img-container {
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+
 .img-pzl {
   cursor: crosshair;
   position: relative;
+  width: 100%;
 }
 
 .modal {
   position: absolute;
   z-index: 1;
-}
-
-.target {
-  height: 80px;
-  width: 80px;
 }
 
 .names {

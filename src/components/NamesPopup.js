@@ -47,8 +47,8 @@ const CharList = (props) => {
 
 const NamesPopup = (props) => {
   const positionStyle = {
-    top: props.coords[1] + 20,
-    left: props.coords[0] + 20,
+    left: props.coords.x + 20,
+    top: props.coords.y + 20,
   };
 
   return <CharList pos={positionStyle} />;

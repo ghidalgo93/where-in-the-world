@@ -5,21 +5,29 @@ import NamesPopup from "./NamesPopup";
 import n64 from "../images/pierre-roussel-n64-phone2.jpg";
 import { getCursorXY } from "../helpers";
 
+function getElementXY() {
+  const xOffset = window.event.offsetX;
+  const yOffset = window.event.offsetY;
+  return { x: xOffset, y: yOffset };
+}
+
 const Home = () => {
-  const [pageLocation, setPageLocation] = useState([]);
+  const [imgClickLocation, setImgClickLocation] = useState({
+    x: null,
+    y: null,
+  });
   const [targetShown, setTargetShown] = useState(false);
   const toggleTargetShown = () => {
     setTargetShown(!targetShown);
   };
   const handleClick = (e) => {
-    const cursorCoords = { x: getCursorXY(e)[0], y: getCursorXY(e)[1] };
-    setPageLocation([cursorCoords.x, cursorCoords.y]);
+    setImgClickLocation({ x: getElementXY().x, y: getElementXY().y });
     toggleTargetShown();
   };
   return (
-    <div>
-      {targetShown ? <TargetPopup coords={pageLocation} /> : null}
-      {targetShown ? <NamesPopup coords={pageLocation} /> : null}
+    <div className={"img-container"}>
+      {targetShown ? <TargetPopup coords={imgClickLocation} /> : null}
+      {targetShown ? <NamesPopup coords={imgClickLocation} /> : null}
       <img
         className={"img-pzl content"}
         src={n64}

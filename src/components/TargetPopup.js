@@ -2,9 +2,12 @@ import "../styles/App.css";
 import crosshairs from "../images/crosshairs.png";
 
 const TargetPopup = (props) => {
+  const height = 80;
   const positionStyle = {
-    top: props.coords[1] - 40,
-    left: props.coords[0] - 40,
+    height: height,
+    width: height,
+    left: props.coords.x - height / 2,
+    top: props.coords.y - height / 2,
   };
 
   return (
