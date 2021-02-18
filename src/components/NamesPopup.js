@@ -12,8 +12,7 @@ const NamesPopup = (props) => {
 
   const handleClick = (e) => {
     const char = e.target.textContent;
-
-    if (coordsInRange(props.coords, props.chars[char].coords)) {
+    if (coordsInRange(props.coords, props.chars[char].coords, 40)) {
       console.log("fuck yeah");
     } else {
       console.log("saaaad");

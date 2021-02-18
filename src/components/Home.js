@@ -16,11 +16,7 @@ function getElementXY() {
 const getData = async () => {
   try {
     const query = firebase.firestore().collection("chars").doc("easy");
-    // const snapshot = await query.get();
     const doc = await query.get();
-    // return snapshot.docs.map((doc) => {
-    //   return doc.data();
-    // });
     return doc.data();
   } catch (error) {
     console.log("Collection not found: ", error);
@@ -37,7 +33,6 @@ const Home = () => {
     setTargetShown(!targetShown);
   };
   const handleClick = (e) => {
-    console.log(getElementXY().x, getElementXY().y);
     setImgClickLocation({ x: getElementXY().x, y: getElementXY().y });
     toggleTargetShown();
   };
