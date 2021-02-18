@@ -34,4 +34,10 @@ const coordsInRange = (testCoords, trueCoods, pixelRange) => {
   return false;
 };
 
-export { coordsInRange };
+function getElementXY() {
+  const xOffset = window.event.offsetX;
+  const yOffset = window.event.offsetY;
+  return { x: xOffset, y: yOffset };
+}
+
+export { getElementXY, coordsInRange };

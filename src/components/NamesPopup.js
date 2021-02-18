@@ -14,6 +14,7 @@ const NamesPopup = (props) => {
     const char = e.target.textContent;
     if (coordsInRange(props.coords, props.chars[char].coords, 40)) {
       console.log("fuck yeah");
+      //
     } else {
       console.log("saaaad");
     }
