@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAsync } from "react-async";
 import "../styles/App.css";
 import firebase from "firebase/app";
+import { coordsInRange } from "../helpers";
 
 const NamesPopup = (props) => {
   const positionStyle = {
@@ -10,21 +11,13 @@ const NamesPopup = (props) => {
   };
 
   const handleClick = (e) => {
-    // console.log(e.target.textContent);
-    // console.log(props.coords);
-    // console.log(props.data);
-    //logic time budddddddy!
-    //if nameclickon.coords === current coords
     const char = e.target.textContent;
-    // console.log(props.chars[char].coords, props.coords);
-    if (props.chars[char].coords === props.coords) {
+
+    if (coordsInRange(props.coords, props.chars[char].coords)) {
       console.log("fuck yeah");
     } else {
       console.log("saaaad");
     }
-    //yay
-    //else
-    //boo
   };
 
   const charsArray = Object.values(props.chars);
