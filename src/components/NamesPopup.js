@@ -15,43 +15,33 @@ const getData = async () => {
   }
 };
 
-const CharList = (props) => {
-  const { data, error } = useAsync({ promiseFn: getData });
-  const handleClick = (e) => {
-    console.log(props.pos);
-    console.log(data);
-    // console.log(data);
-    // if the clicked name has coords within range
-    // make success note
-    // remove name from list
-    // else
-    // error note
-  };
-
-  if (error) return error.message;
-  if (data) {
-    const listItems = data.map((char) => (
-      <li key={char.id} className={"name"} onClick={handleClick}>
-        {char.name}
-      </li>
-    ));
-    const list = (
-      <ul className={"modal names"} style={props.pos}>
-        {listItems}
-      </ul>
-    );
-    return list;
-  }
-  return null;
-};
-
 const NamesPopup = (props) => {
   const positionStyle = {
     left: props.coords.x + 20,
     top: props.coords.y + 20,
   };
 
-  return <CharList pos={positionStyle} />;
+  const handleClick = (e) => {
+    console.log(e.target);
+    console.log(props.coords);
+  };
+
+  //get the data asynchronoskasdlkfly
+  const { data, error } = useAsync({ promiseFn: getData });
+  if (error) return `Someting went wrong: ${error}`;
+  if (data) {
+    const listItems = data.map((char) => (
+      <li key={char.id} className={"name"} onClick={handleClick}>
+        {char.name}
+      </li>
+    ));
+    return (
+      <ul className={"modal names"} style={positionStyle}>
+        {listItems}
+      </ul>
+    );
+  }
+  return null;
 };
 
 export default NamesPopup;

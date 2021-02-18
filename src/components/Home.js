@@ -21,6 +21,7 @@ const Home = () => {
     setTargetShown(!targetShown);
   };
   const handleClick = (e) => {
+    console.log(getElementXY().x, getElementXY().y);
     setImgClickLocation({ x: getElementXY().x, y: getElementXY().y });
     toggleTargetShown();
   };
