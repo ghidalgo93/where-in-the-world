@@ -15,10 +15,10 @@ const NamesPopup = ({ toggleTarget, coords, chars, setChars }) => {
       console.log("yay");
       const { [char]: removed, ...rest } = chars;
       setChars(rest);
+      toggleTarget();
     } else {
       console.log("saaaad");
     }
-    toggleTarget();
   };
 
   const listItems = charsArray.map((char) => (

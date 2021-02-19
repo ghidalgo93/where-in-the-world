@@ -14,10 +14,12 @@ const Home = () => {
   const [imgClickLocation, setImgClickLocation] = useState({});
   const [targetShown, setTargetShown] = useState(false);
   const [chars, setChars] = useState();
+  const [messageShown, setMessageShown] = useState(false);
 
   const handleClick = (e) => {
     setImgClickLocation({ x: getElementXY().x, y: getElementXY().y });
     setTargetShown(!targetShown);
+    setMessageShown(!messageShown);
   };
   const fetchCharacters = async () => {
     const query = firebase.firestore().collection("chars").doc("easy");
@@ -27,7 +29,7 @@ const Home = () => {
 
   let content = (
     <div className={"img-container"}>
-      <MessageBanner />
+      {messageShown ? <MessageBanner onMessageShow={setMessageShown} /> : null}
       {targetShown ? <TargetPopup coords={imgClickLocation} /> : null}
       {targetShown ? (
         <NamesPopup
