@@ -29,10 +29,15 @@ nav {
   color: white;
 }
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 5vh;
+  /* min-height: 3vh; */
+  font-size: 0.5em;
   background-color: #2b2d31;
   color: white;
 }
@@ -78,4 +83,9 @@ footer {
 .name:hover {
   color: red;
   cursor: pointer;
+}
+
+.banner {
+  position: absolute;
+  z-index: 1;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/App.css";
+import MessageBanner from "./MessageBanner";
 import TargetPopup from "./TargetPopup";
 import NamesPopup from "./NamesPopup";
 import n64 from "../images/pierre-roussel-n64-phone2.jpg";
@@ -8,18 +9,17 @@ import firebase from "firebase/app";
 
 const Home = () => {
   useEffect(() => {
-    getData();
+    fetchCharacters();
   }, []);
   const [imgClickLocation, setImgClickLocation] = useState({});
   const [targetShown, setTargetShown] = useState(false);
-  const [chars, setChars] = useState(null);
+  const [chars, setChars] = useState();
 
   const handleClick = (e) => {
     setImgClickLocation({ x: getElementXY().x, y: getElementXY().y });
     setTargetShown(!targetShown);
   };
-
-  const getData = async () => {
+  const fetchCharacters = async () => {
     const query = firebase.firestore().collection("chars").doc("easy");
     const doc = await query.get();
     setChars(doc.data());
@@ -27,9 +27,11 @@ const Home = () => {
 
   let content = (
     <div className={"img-container"}>
+      <MessageBanner />
       {targetShown ? <TargetPopup coords={imgClickLocation} /> : null}
       {targetShown ? (
         <NamesPopup
+          toggleTarget={() => setTargetShown(!targetShown)}
           coords={imgClickLocation}
           chars={chars}
           setChars={setChars}
@@ -43,10 +45,7 @@ const Home = () => {
       />
     </div>
   );
-
-  if (!chars) {
-    content = <p>Loading...</p>;
-  }
+  if (!chars) content = <p>Loading...</p>;
 
   return content;
 };
