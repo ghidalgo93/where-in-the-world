@@ -6,34 +6,24 @@ import n64 from "../images/pierre-roussel-n64-phone2.jpg";
 import { getElementXY } from "../helpers";
 import firebase from "firebase/app";
 
-const getData = async () => {
-  try {
-    const query = firebase.firestore().collection("chars").doc("easy");
-    const doc = await query.get();
-    return doc.data();
-  } catch (error) {
-    console.log("Collection not found: ", error);
-  }
-};
-
 const Home = () => {
-  const [imgClickLocation, setImgClickLocation] = useState({
-    x: null,
-    y: null,
-  });
+  useEffect(() => {
+    getData();
+  }, []);
+  const [imgClickLocation, setImgClickLocation] = useState({});
   const [targetShown, setTargetShown] = useState(false);
-  const toggleTargetShown = () => {
-    setTargetShown(!targetShown);
-  };
+  const [chars, setChars] = useState(null);
+
   const handleClick = (e) => {
     setImgClickLocation({ x: getElementXY().x, y: getElementXY().y });
-    toggleTargetShown();
+    setTargetShown(!targetShown);
   };
 
-  const [chars, setChars] = useState(null);
-  useEffect(async () => {
-    setChars(await getData());
-  }, []);
+  const getData = async () => {
+    const query = firebase.firestore().collection("chars").doc("easy");
+    const doc = await query.get();
+    setChars(doc.data());
+  };
 
   let content = (
     <div className={"img-container"}>
